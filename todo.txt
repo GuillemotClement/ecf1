@@ -1,0 +1,10 @@
+TODO: refaire les fontion php
+TODO: créer structure de base
+TODO: design grand écran
+TODO: design ecran moyen
+TODO: petit écran
+TODO: créer la modal
+TODO: fonction afficher
+TODO: fonction supprimer
+TODO: fonction creer
+TODO: fonction modifier
