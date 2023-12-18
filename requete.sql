@@ -1,3 +1,5 @@
+/* userPhp / 123456 */
+
 /* CREATION DE LA DBB */
 CREATE DATABASE ecf;
 
@@ -68,3 +70,17 @@ VALUES
 ('Madame', 'Moreau', 'Céline', '1994-12-08', 'Bordeaux', '890123456789012', 'celine.moreau@entreprise.com', 'celine.moreau@gmail.com', '0689012345', NULL, 'Française', 'Stagiaire'),
 ('Monsieur', 'Simon', 'Éric', '1978-02-27', 'Lille', '901234567890123', 'eric.simon@entreprise.com', NULL, '0690123456', '0545678901', 'Française', 'CDI'),
 ('Madame', 'Michel', 'Anne', '1986-06-19', 'Rennes', '012345678901234', 'anne.michel@entreprise.com', 'anne.michel@gmail.com', '0701234567', NULL, 'Française', 'CDD');
+
+INSERT INTO adresse (collaborateur_id, rue, complement, code_postal, ville, departement, region, pays)
+VALUES
+(1, '123 Rue de Paris', 'Apt 101', '75001', 'Paris', 'Paris', 'Île-de-France', 'France'),
+(2, '456 Avenue de Lyon', 'Bâtiment B', '69002', 'Lyon', 'Rhône', 'Auvergne-Rhône-Alpes', 'France'),
+(3, '789 Boulevard de Marseille', NULL, '13003', 'Marseille', 'Bouches-du-Rhône', 'Provence-Alpes-Côte d\'Azur', 'France'),
+(4, '101 Rue de Toulouse', 'Apt 202', '31004', 'Toulouse', 'Haute-Garonne', 'Occitanie', 'France'),
+(5, '202 Avenue de Nice', NULL, '06005', 'Nice', 'Alpes-Maritimes', 'Provence-Alpes-Côte d\'Azur', 'France'),
+(6, '303 Boulevard de Nantes', '3ème étage', '44006', 'Nantes', 'Loire-Atlantique', 'Pays de la Loire', 'France'),
+(7, '404 Rue de Strasbourg', 'Maison', '67007', 'Strasbourg', 'Bas-Rhin', 'Grand Est', 'France'),
+(8, '505 Avenue de Bordeaux', 'Apt 305', '33008', 'Bordeaux', 'Gironde', 'Nouvelle-Aquitaine', 'France'),
+(9, '606 Boulevard de Lille', 'Bâtiment D', '59009', 'Lille', 'Nord', 'Hauts-de-France', 'France'),
+(10, '707 Rue de Rennes', NULL, '35010', 'Rennes', 'Ille-et-Vilaine', 'Bretagne', 'France');
+
