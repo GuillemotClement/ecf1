@@ -5,6 +5,53 @@
     //$sousPageHtml="page/collaborateur/form.php";
     extract($_GET);
     switch($action){
+        // case 'afficher':
+        //     $id=$_GET['id'];
+        //     $collaborateur=findByIdTable('collaborateur',$id);
+        //     $variables=[
+        //         'id'=>$collaborateur['id'],
+        //         'code_collaborateur'=>$collaborateur['code_collaborateur'],
+        //         'designation'=>$collaborateur['designation'],
+        //         'prixUnitaire'=>$collaborateur['prixUnitaire'],
+        //         'etat'=>'disabled',
+                
+        //     ];
+        //     generatePage($sousPageHtml,$variables);
+        //  break;
+         default:
+         $collaborateur=listTable('collaborateur');
+         $nbre=count($collaborateur);
+         $ligne="";
+         foreach($collaborateur as $valeur){
+             $id=$valeur['id'];
+             $code=$valeur['code_collaborateur'];
+             $nom=$valeur['nom'];
+             $prenom=$valeur['prenom'];
+             $adresse=$valeur['rue'];
+             $mobile=$valeur['portable'];
+             $actions="
+             <a href='javascript:modifier($id)' class='btn_action bg_blue'>Modifier</a> 
+             <a href='javascript:afficher($id)' class='btn_action bg_navy'>Afficher</a> 
+             <a href='javascript:supprimer($id)' class='btn_action bg_red'>Supprimer</a>";
+             $ligne.="
+                 <tr class='h2em'>
+                     <td class='border center'>$code</td>
+                     <td class='border'>$nom $prenom</td>
+                     <td class='border right'>$adresse</td>
+                     <td class='border center'>$mobile</td>
+                     <td class='border flex_space_between'>$actions</td>
+                  </tr>
+             ";
+         }
+         $sousPageHtml="page/collaborateur/listCollaborateur.php";
+         $variables=[
+             'rows'=>$ligne,
+             'nbre'=>$nbre,
+     
+         ];
+         generatePage($sousPageHtml,$variables);
+         break;
+         }
     //     // AJAX----------------------------------------
     //     case "save":
     //         $response_json = json_encode($_POST);
@@ -60,19 +107,7 @@
     //         break;
     //     // -----------------------------------------------
 
-    //     case 'afficher':
-    //         $id=$_GET['id'];
-    //         $article=findByIdTable('article',$id);
-    //         $variables=[
-    //             'id'=>$article['id'],
-    //             'numArticle'=>$article['numArticle'],
-    //             'designation'=>$article['designation'],
-    //             'prixUnitaire'=>$article['prixUnitaire'],
-    //             'etat'=>'disabled',
-                
-    //         ];
-    //         generatePage($sousPageHtml,$variables);
-    //         break;
+
     //     case 'modifier':
     //         $id=$_GET['id'];
     //         $article=findByIdTable('article',$id);
@@ -111,40 +146,7 @@
 
     //         }
     //         break;
-        default:
-            $collaborateur=listTable('collaborateur');
-            $nbre=count($collaborateur);
-            $ligne="";
-            foreach($collaborateur as $valeur){
-                $id=$valeur['id'];
-                $code=$valeur['code_collaborateur'];
-                $nom=$valeur['nom'];
-                $prenom=$valeur['prenom'];
-                $adresse=$valeur['rue'];
-                $mobile=$valeur['portable'];
-                $actions="
-                <a href='javascript:modifier($id)' class='btn_action bg_blue'>Modifier</a> 
-                <a href='javascript:afficher($id)' class='btn_action bg_navy'>Afficher</a> 
-                <a href='javascript:supprimer($id)' class='btn_action bg_red'>Supprimer</a>";
-                $ligne.="
-                    <tr class='h2em'>
-                        <td class='border center'>$code</td>
-                        <td class='border'>$nom $prenom</td>
-                        <td class='border right'>$adresse</td>
-                        <td class='border center'>$mobile</td>
-                        <td class='border flex_space_between'>$actions</td>
-                     </tr>
-                ";
-            }
-            $sousPageHtml="page/collaborateur/listCollaborateur.php";
-            $variables=[
-                'rows'=>$ligne,
-                'nbre'=>$nbre,
-        
-            ];
-            generatePage($sousPageHtml,$variables);
-            break;
-            }
+       
 
 
 

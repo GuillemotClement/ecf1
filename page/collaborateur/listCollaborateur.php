@@ -1,14 +1,16 @@
-<!-- <h1 class="titre">LISTE CLIENT</h1> -->
-<!-- AFFICHER MODAL -->
-<!-- TODO: reparer l'affichage -->
-<button  class=""><a id="show_modal_art" class="" href="#modal_art"></a></button> 
+
+<!-- ACCES A LA MODAL -->
+<button  class="" onclick="">
+    <a id="show_modal_art" class="" href="#modal_art">modal</a>
+</button> 
+
+
 <!-- AFFICHAGE DES DEUX BOUTONS -->
-<div class="d-flex  mb-4">
-    <button class="btn btn-md btn-primary" onclick="create()">Créer</button>
+<div class="d-flex  mb-4 text-white" id="main">
+    <!-- sera fonction creer et pas create -->
+    <button class="btn btn-md btn-primary" onclick="createNewCollaborateur()">Créer</button>
     <!-- <button class="btn btn-md btn-success" onclick="window.print()">Imprimer</button> -->
 </div>
-<!-- AFFICHAGE DE LA TABLE CLIENT -->
-
     <table  class="">
         <thead class="bg-primary text-white" id="tableauHeader">
             <tr class=>
@@ -28,145 +30,236 @@
             </tr>      
         </tfoot>
 </div>
+<!-- new -->
 
-<!------------------------AJOUT DU MODAL-----------------------------------------------  -->
-<!-- <div id="modal_art">
+
+<!-- <div class="d-flex justify-content-around mb-4"> -->
+    <!-- <button class="btn btn-md btn-primary" onclick="creer()">Ajouter article</button> -->
+    <!-- <button class="btn btn-md btn-success" onclick="window.print()">Imprimer</button> -->
+<!-- </div> -->
+
+<!-- CREATION DU MODAL -->
+TODO: création des input de la modal
+<div id="modal_art">
     <div id="modal_art_content">
-        <h1 class="titre text-center text-uppercase">Saisie Client</h1>
+        <h1 class="titre text-center text-uppercase">Saisie Collaborateur</h1>
         <a id="modal_close" href="#">&times</a>
-        <div action="">
-            <div class="zone_saisie my-2">
-
-                <label for="id" class="lab20 text-uppercase w-20">ID</label>
-                <input type="text" id="id" name="id" value="" class="form-control w-20">
+        <div action="" id="formulaireDouble">
+            <div class="leftInput">
+                <div class="topInput">
+                    <div class="inputText">
+                        <!-- TODO: modifier pour passer en option -->
+                        <label for="civilite">Civilité <span class="red">*</span>
+                            <select name="civilite" id="civilite" class="form-control">
+                                <option value="madame">Madame</option>
+                                <option value="monsieur">Monsieur</option>
+                            </select>
+                        </label>
+                        <br>
+                        <label for="nom" class="lab20">Nom <span class="red">*</span>
+                            <input type="text" id="name" name="name" class="form-control">
+                        </label>
+                        <br>
+                        <label for="prenom">Prénom <span class="red">*</span>
+                            <input type="text" id="name" name="prenom" class="form-control">
+                        </label>
+                    </div>
+                    <div class="choixImg">
+                        <!-- TODO: ajouter image + input file -->
+                        <div class="carreImg">
+                            <img src="ressource/img/imgProfil.png" alt="imageProfil" id="imgProfil">
+                        </div>
+                        <button id="sendImg">Choisir un fichier</button>
+                    </div>
+                </div>
+                <!-- TODO: ajout bottom input -->
+                <label for="dateNaissance">Date naissance <span class="red">*</span>
+                    <input type="date" id="dateNaissance" name="dateNaissance" class="form-control">
+                </label>
+                <br>
+                <label for="lieuNaissance">Lieu naissance <span class="red">*</span>
+                    <input type="text" id="lieuNaissance" name="lieuNaissance" class="form-control">
+                </label>
+                <br>
+                <label for="numSecu">Numéro sécu <span class="red">*</span>
+                    <input type="text" id="codenumSecu" name="numSecu" class="form-control">
+                </label>
+                <br>
+                <label for="mailPro">Mail pro 
+                    <input type="mail" id="mailPro" name="mailPro" class="form-control">
+                </label>
+                <br>
+                <label for="mailPerso">Mail perso
+                    <input type="mail" id="mailPerso" name="mailPerso" class="form-control">
+                </label>
+                <br>
+                <label for="telPortable">Mobile <span class="red">*</span>
+                    <input type="tel" id="telPortable" name="telPortable" class="form-control">
+                </label>
+                <br>
+                <label for="telFixe">Téléphone fixe
+                    <input type="tel" id="telFixe" name="telFixe" class="form-control">
+                </label>
+                <br>
             </div>
-            <div class="zone_saisie my-2">
-                <label for="numClient" class="lab20 text-uppercase">Num Client</label>
-                <input type="text" id="numClient" name="numClient" value="" class="form-control w80">
+            <div class="rightInput">
+                <h2>Adresse</h2>
+                <label for="rue">Rue <span class="red">*</span>
+                    <input type="text" id="rue" name="rue" class="form-control">
+                </label>
+                <br>
+                <label for="complement">Complément
+                    <input type="text" id="complement" name="complement" class="form-control">
+                </label>
+                <br>
+                <label for="codePostal">Code Postal <span class="red">*</span>
+                    <input type="text" id="codePostal" name="codePostal" class="form-control">
+                </label>
+                <br>
+                <label for="ville">Ville <span class="red">*</span>
+                    <input type="text" id="ville" name="ville" class="form-control">
+                </label>
+                <br>
+                <label for="departement">Département <span class="red">*</span>
+                    <input type="text" id="departement" name="departement" class="form-control">
+                </label>
+                <br>
+                <label for="region">Région <span class="red">*</span>
+                    <input type="text" id="region" name="region" class="form-control">
+                </label>
+                <br>
+                <label for="pays">Pays <span class="red">*</span>
+                    <input type="text" id="pays" name="pays" class="form-control">
+                </label>
+                <br>
+                <label for="nationnalite">Nationnalité <span class="red">*</span>
+                    <input type="text" id="nationnalite" name="nationnalite" placeholder="Française" class="form-control">
+                </label>
+                <br>
+                <label for="typeCollaborateur">Type Collaborateur <span class="red">*</span>
+                    <select name="typeCollaborateur" id="typeCollaborateur" class="form-control">
+                        <option value="cdd">CDD</option>
+                        <option value="cdi">CDI</option>
+                        <option value="independant">Indépendant</option>
+                        <option value="stagiaire">Stagiaire</option>
+                    </select>
+                </label>
             </div>
-            <div class="zone_saisie my-2">
-                <label for="nomClient" class="lab20 text-uppercase">Nom Client</label>
-                <input type="text" id="nomClient" name="nomClient" value="" class="form-control w-20">
-            </div>
-            <div class="zone_saisie my-2">
-                <label for="adresseClient" class="lab20 text-uppercase">Adresse Client</label>
-                <input type="text" id="adresseClient" name="adresseClient" value="" class="form-control w-20">
-            </div>
-
-            <div class="list_btn my-4 d-flex justify-content-evenly">
-                <button id="btn_cancel" class="btn btn-md btn-primary" onclick="cancel()">Annuler</button>
-                <button id="btn_delete"class="btn btn-md btn-danger" onclick="del()">Supprimer</button>
-                <button id="btn_save" class="btn btn-md btn-success" onclick="enregistrer()">Enregistrer</button>
-            </div>
-            <img id="loader" src="img\loader1.gif" alt="loader">    
+            
         </div>
+        <div class="list_btn my-4 d-flex justify-content-evenly">
+                <button id="btn_cancel" class="btn btn-md btn-primary" onclick="">Annuler</button>
+                <button id="btn_delete"class="btn btn-md btn-danger" onclick="">Supprimer</button>
+                <button id="btn_save" class="btn btn-md btn-success" onclick="enregistrer()">Enregistrer</button>
+            </div> 
     </div>
-</div> -->
+</div>
+<script> 
+    function createNewCollaborateur(){
+        id.value = 0;
+        numArticle.value = "";
+        designation.value = "";
+        prixUnitaire.value = "";
+        show_modal_art.click();
+    }
+    function enregistrer(){
+        debutAttente();
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "article_ajax.php?action=save");
+        let data = new FormData();
+        data.append('id', parseInt(id.value));
+        data.append('numArticle', numArticle.value);
+        data.append('designation', designation.value);
+        data.append('prixUnitaire', prixUnitaire.value);
+        xhr.send(data);
+        xhr.onload=function(){
+            setTimeout("finAttente", 2000);
+            let response = xhr.responseText;
+            modal_close.click(); //marche pas
+            chercher();
+            alert(response);
+        }
+    }
 
-<!-------------------------------------AJOUT DES FONCTIONS--------------->
-<script>
-    // TODO:fonction afficher marche pas
-    // TODO: fonction modifier marche pas
-    // TODO: fonction suppression marche pas
-
-    // TODO: fonction cancel se lance bien au click sur bouton annuler
-    // function cancel(){
-    //     alert("Cancel");
-    // }
-    // TODO: fonction del se lance bien au lick sur le bouton supprimer
-    // function del(){
-    //     alert("Supprimer");
-    // }
-    // function create(){
-    //     id.value = 0;
-    //     numClient.value = "";
-    //     nomClient.value = "";
-    //     adresseClient.value = "";
-    //     show_modal_art.click();
-    // }
-
-    // function enregistrer(){
-    //     // debutAttente();
-    //     let xhr = new XMLHttpRequest();
-    //     xhr.open("POST", "client_ajax.php?action=save");
-    //     let data = new FormData();
-    //     data.append('id', parseInt(id.value));
-    //     data.append('numClient', numClient.value);
-    //     data.append('nomClient', nomClient.value);
-    //     data.append('adresseClient', adresseClient.value);
-    //     xhr.send(data);
-    //     xhr.onload=function(){
-    //         setTimeout("finAttente", 2000);
-    //         let response = xhr.responseText;
-    //         modal_close.click(); 
-    //         chercher();
-    //         alert(response);
-    //     }
-    // }
-    // function debutAttente(){
-    //     let loader = document.getElementById('loader');
-    //     loader.setAttribute('style', 'visibility:visible');
-    // }
-    // function finAttente(){
-    //     let loader = document.getElementById('loader');
-    //     loader.setAttribute('style', 'visibility:hidden'); 
-    // }
-    // function modifier(client_id){
-    //     afficher(client_id)
-    // }
-    // function afficher(client_id, etat = 0){
-        // debutAttente();
+    function debutAttente(){
+        let loader = document.getElementById('loader');
+        loader.setAttribute('style', 'visibility:visible');
+    }
+    function finAttente(){
+        let loader = document.getElementById('loader');
+        loader.setAttribute('style', 'visibility:hidden'); 
+    }
+    function modifier(article_id){
+        afficher(article_id)
+    }
+    function afficher(article_id, etat=0){
+        debutAttente();
         //alert("Vous allez modifier l'article dont l'id = " + article_id);
-         //let xhr = new XMLHttpRequest(); //creation un nouvel objet XMLHttpRequest et l'affecter a la variable xhr
-         //xhr.open("POST", "client_ajax.php?action=show&id=" + client_id); //syntaxe open('methode d'emvoi','l'adresse url pour le traitement vers php)
+         let xhr = new XMLHttpRequest(); //creation un nouvel objet XMLHttpRequest et l'affecter a la variable xhr
+         xhr.open("POST", "article_ajax.php?action=show&id="+article_id); //syntaxe open('methode d'emvoi','l'adresse url pour le traitement vers php)
          //on indique la methode, le chemin, l'action
-         //xhr.send(); //envoie l'objet xhr vers php
-        //xhr.onload=function(){
-            //let response=xhr.responseText;//accuse de reception est contenu dans 'responseText'
-            // let responses=JSON.parse(response);
-            // id.value=responses.id;
-            // numClient.value=responses.numClient;
-            // nomClient.value=responses.nomClient;
-            // adresseClient.value=responses.adresseClient
-            // show_modal_art.click();
-            // if(etat == 0){
-            //     id.disabled = true;
-            //     numClient.disabled = true
-            //     nomClient.disabled = true;
-            //     adresseClient.disabled = true;
+         xhr.send(); //envoie l'objet xhr vers php
+        xhr.onload=function(){
+            let response=xhr.responseText;//accuse de reception est contenu dans 'responseText'
+            let responses=JSON.parse(response);
+            id.value=responses.id;
+            numArticle.value=responses.numArticle;
+            designation.value=responses.designation;
+            prixUnitaire.value=responses.prixUnitaire
+            show_modal_art.click();
+            if(etat == 0){
+                id.disabled = true;
+                numArticle.disabled = true
+                designation.disabled = true;
+                prixUnitaire.disabled = true;
                 
-            // }else{
-            //     id.disabled = false;
-            //     numClient.disabled = false;
-            //     nomClient.disabled = false;
-            //     adresseClient.disabled = false;
-            // }
-            // setTimeout("finAttente()", 1500);
+            }else{
+                id.disabled = false;
+                numArticle.disabled = false;
+                designation.disabled = false;
+                prixUnitaire.disabled = false;
+            }
+            setTimeout("finAttente()", 1500);
             //alert(responses.id+ ' - '+responses.numArticle+ ' - '+responses.designation);
             //console.log(responses);
               //affiche dans un pop up du message
         }
     }
-    // --------------------------FUNCTION BARRE DE RECHERCHE---------------
-    // TODO: non fonctionel. Ne s'active pas
-    // function chercher(){
+
+    function chercher(){
+        //alert(mot.value); //on recupere la valeur indiquer dans le input search
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "article_ajax.php?action=search");
+        let data=new FormData(); //creation d'un objet pour contenir des donnee
+        data.append("mot", mot.value); 
+        xhr.send(data);
+        xhr.onload=function(){
+            let response = xhr.responseText;
+            tbody_article.innerHTML=response;
+            mot.value="";
+        }
+    }
+
+    function touch(event){
+        if(event.keyCode == 13){
+            chercher();
+    
+        }
+    }
+
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------
+      // FUNCTION SUPPRIMER
+    // TODO: attention c'est juste copier du cour
+    // Premiere methode
+    // function supprimer(id){
     //     let xhr = new XMLHttpRequest();
-    //     xhr.open("POST", "client_ajax.php?action=search");
-    //     let data = new FormData();
-    //     data.append("mot", mot.value);
-    //     xhr.send(data);
+    //     xhr.open("POST", "article-ajax.php?action=delete&id"=+id);
+    //     xhr.send();
     //     xhr.onload = function(){
-    //         let response = xhr.responseText;
-    //         tbody_client.innerHTML=response;
-    //         mot.value = "";
+    //         let response = shr.responseText;
+    //         alert(response);
     //     }
     // }
-    // function touch(event){
-    //     if(event.keyCode == 13){
-    //         chercher();
-    //     }
-    // }
-
-  
-
+    cxcmsnnbCCXCC
 </script>
+
