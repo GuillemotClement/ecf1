@@ -102,3 +102,26 @@ VALUES
 (9, '606 Boulevard de Lille', 'Bâtiment D', '59009', 'Lille', 'Nord', 'Hauts-de-France', 'France'),
 (10, '707 Rue de Rennes', NULL, '35010', 'Rennes', 'Ille-et-Vilaine', 'Bretagne', 'France');
 
+
+
+liste des truc 
+code_collaborateur
+civilite
+nom
+prenom
+date_naissance
+ville_naissance
+num_secu
+mail_pro
+mail_perso
+portable 
+tel_fixe
+rue
+complement
+code_postal
+ville
+departement
+region
+pays
+nationalite
+type_collaborateur

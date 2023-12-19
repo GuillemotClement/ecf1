@@ -5,19 +5,92 @@
     //$sousPageHtml="page/collaborateur/form.php";
     extract($_GET);
     switch($action){
-        // case 'afficher':
-        //     $id=$_GET['id'];
-        //     $collaborateur=findByIdTable('collaborateur',$id);
-        //     $variables=[
-        //         'id'=>$collaborateur['id'],
-        //         'code_collaborateur'=>$collaborateur['code_collaborateur'],
-        //         'designation'=>$collaborateur['designation'],
-        //         'prixUnitaire'=>$collaborateur['prixUnitaire'],
-        //         'etat'=>'disabled',
-                
-        //     ];
-        //     generatePage($sousPageHtml,$variables);
-        //  break;
+        case "save": //creation nouvel user
+            $response_json = json_encode($_POST);
+                extract($_POST);
+                $connexion = connexion();
+                if($id==0){
+                    $sql = "INSERT INTO collaborateur (code_collaborateur,civilite,nom,prenom,date_naissance,ville_naissance,num_secu,mail_pro,mail_perso,portable,tel_fixe,rue,complement,code_postal,ville,departement,region,pays,nationalite,type_collaborateur) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    $requete = $connexion->prepare($sql);
+                    $requete -> execute([$code_collaborateur, $civilite, $nom, $prenom, $date_naissance, $ville_naissance, $num_secu, $mail_pro, $mail_perso,$portable, $tel_fixe, $rue, $complement, $code_postal, $ville, $departement, $region, $pays, $nationalite, $type_collaborateur]);                     
+                }else{
+                    $sql = "UDAPTE collaborateur SET code_collaborateur=?,civilite=?,nom=?,prenom=?,date_naissance=?,ville_naissance=?,num_secu=?,mail_pro=?,mail_perso=?,portable=?,tel_fixe=?,rue=?,complement=?,code_postal=?,ville=?,departement=?,region=?,pays=?,nationalite=?,type_collaborateur=? WHERE id=?";
+                    $requete = $connexion->prepare($sql);
+                    $requete -> execute([$numArticle, $designation, $prixUnitaire, $id]);
+                }
+                echo "Vous avez bien enregistrer les donnees";
+                break;
+        case 'afficher':
+            $id=$_GET['id'];
+            $collaborateur=findByIdTable('collaborateur',$id);
+            $variables=[
+                'id'=>$collaborateur['id'],
+                'code_collaborateur'=>$collaborateur['code_collaborateur'],
+                'civilite'=>$collaborateur['civilite'],
+                'nom'=>$collaborateur['nom'],
+                'prenom'=>$collaborateur['prenom'],
+                'prenom'=>$collaborateur['prenom'],
+                'prenom'=>$collaborateur['prenom'],
+                'prenom'=>$collaborateur['prenom'],
+                'prenom'=>$collaborateur['prenom'],
+                'prenom'=>$collaborateur['prenom'],
+                'prenom'=>$collaborateur['prenom'],
+                'prenom'=>$collaborateur['prenom'],
+                'etat'=>'disabled',              
+            ];
+            generatePage($sousPageHtml,$variables);
+         break;
+        case "search":
+            $mot = $_POST['mot'];
+            $connexion=connexion();
+            $sql = "SELECT * FROM collaborateur 
+                where code_collaborateur like ? 
+                or nom like ?
+                OR prenom like ?
+                OR ville_naissance LIKE ?
+                OR num_secu LIKE ?
+                OR mail_pro LIKE ?
+                OR mail_perso LIKE ?
+                OR portable LIKE ?
+                OR tel_fixe LIKE ?
+                OR rue LIKE ?
+                OR complement LIKE ?
+                OR code_postal LIKE ?
+                OR ville LIKE ?
+                OR departement LIKE ?
+                OR region LIKE ?
+                OR pays LIKE ?
+                OR nationalite LIKE ?
+                ";
+            $requete=$connexion->prepare($sql);
+            $requete->execute(array_fill(0, 17, "%$mot%"));
+            $collaborateur=$requete->fetchAll();
+            $ligne="";
+            $nbre=count($collaborateur);
+            $ligne="";
+            foreach($collaborateur as $valeur){
+                $id=$valeur['id'];
+                $code=$valeur['code_collaborateur'];
+                $nom=$valeur['nom'];
+                $prenom=$valeur['prenom'];
+                $adresse=$valeur['rue'];
+                $mobile=$valeur['portable'];
+                $actions="
+                <button id='btnModif'><a href='javascript:modifier($id)' btnModifier>Modifier</a></button> 
+                <button id='btnAff'><a href='javascript:afficher($id)'>Afficher</a></button>
+                <button id='btnSupr'><a href='javascript:supprimer($id)' class='btn_action bg_red'>Supprimer</a></button>";
+                $ligne.="
+                    <tr class='h2em'>
+                        <td id='tdMerde' class='border text-center' '>$code</td>
+                        <td id='tdMerde' class='border text-center'>$nom $prenom</td>
+                        <td id='tdMerde' class='border text-center'>$adresse</td>
+                        <td id='tdMerde' class='border text-centercenter'>$mobile</td>
+                        <td id='tdMerde' class='border flex_space_between'>$actions</td>
+                     </tr>
+                ";
+            }
+            echo $ligne;
+            break;
          default:
          $collaborateur=listTable('collaborateur');
          $nbre=count($collaborateur);
@@ -30,16 +103,17 @@
              $adresse=$valeur['rue'];
              $mobile=$valeur['portable'];
              $actions="
-             <a href='javascript:modifier($id)' class='btn_action bg_blue'>Modifier</a> 
-             <a href='javascript:afficher($id)' class='btn_action bg_navy'>Afficher</a> 
-             <a href='javascript:supprimer($id)' class='btn_action bg_red'>Supprimer</a>";
+             <button id='btnModif'><a href='javascript:modifier($id)' btnModifier>Modifier</a></button> 
+             <button id='btnAff'><a href='javascript:afficher($id)'>Afficher</a></button>
+             <button id='btnSupr'><a href='javascript:supprimer($id)' class='btn_action bg_red'>Supprimer</a></button>";
+             
              $ligne.="
                  <tr class='h2em'>
-                     <td class='border center'>$code</td>
-                     <td class='border'>$nom $prenom</td>
-                     <td class='border right'>$adresse</td>
-                     <td class='border center'>$mobile</td>
-                     <td class='border flex_space_between'>$actions</td>
+                     <td id='tdMerde' class='border text-center' '>$code</td>
+                     <td id='tdMerde' class='border text-center'>$nom $prenom</td>
+                     <td id='tdMerde' class='border text-center'>$adresse</td>
+                     <td id='tdMerde' class='border text-centercenter'>$mobile</td>
+                     <td id='tdMerde' class='border flex_space_between'>$actions</td>
                   </tr>
              ";
          }
@@ -53,21 +127,7 @@
          break;
          }
     //     // AJAX----------------------------------------
-    //     case "save":
-    //         $response_json = json_encode($_POST);
-    //             extract($_POST);
-    //             $connexion = connexion();
-    //             if($id==0){
-    //                 $sql = "insert into article (numArticle, designation, prixUnitaire) values (?, ?, ?)";
-    //                 $requete = $connexion->prepare($sql);
-    //                 $requete -> execute([$numArticle, $designation, $prixUnitaire]);
-    //             }else{
-    //                 $sql = "update article set numArticle=?, designation=?, prixUnitaire=? where id=?";
-    //                 $requete = $connexion->prepare($sql);
-    //                 $requete -> execute([$numArticle, $designation, $prixUnitaire, $id]);
-    //             }
-    //             echo "Vous avez bien enregistrer les donnees";
-    //             break;
+        
     //     case "show":
     //         $id=$_GET['id'];
     //         $article = findByIdTable("article", $id);
@@ -75,36 +135,7 @@
     //         //$designation=$article["designation"];
     //         echo $article_json; //envoi de message vers ajax->javascript
     //         break;
-    //     case "search":
-    //         $mot = $_POST['mot'];
-    //         $connexion=connexion();
-    //         $sql = "SELECT * FROM article where numArticle like ? or designation like ?";
-    //         $requete=$connexion->prepare($sql);
-    //         $requete->execute(["%$mot%","%$mot%"]);
-    //         $article=$requete->fetchAll();
-    //         $ligne="";
-    //         $nbre=count($article);
-    //         $ligne="";
-    //         foreach($article as $valeur){
-    //             $id=$valeur['id'];
-    //             $numArticle=$valeur['numArticle'];
-    //             $designation=$valeur['designation'];
-    //             $prixUnitaire=$valeur['prixUnitaire'];
-    //             $actions="<a href='javascript:afficher($id)' class='btn_action bg_navy'>Afficher</a> 
-    //             <a href='javascript:modifier($id)' class='btn_action bg_blue'> Modifier</a> 
-    //             <a href='javascript:supprimer($id)' class='btn_action bg_red'>Supprimer</a>";
-    //             $ligne.="
-    //                 <tr class='h2em'>
-    //                     <td class='border center'><img class='zoom' src='img/bb0001.png' width='20%' alt='' /></td>
-    //                     <td class='border center'>$numArticle</td>
-    //                     <td class='border'>$designation</td>
-    //                     <td class='border right'>$prixUnitaire</td>
-    //                     <td class='border flex_space_between'>$actions</td>
-    //                 </tr>
-    //             ";
-    //         }
-    //         echo $ligne;
-    //         break;
+        
     //     // -----------------------------------------------
 
 
@@ -166,5 +197,7 @@
     // }
 
 
-
+    // 
+    // 
+    // 
 ?>

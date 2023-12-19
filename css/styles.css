@@ -20,7 +20,9 @@
     padding: 0;
 }
 #section-bs{
-    overflow: visible;
+    width: 80%;
+    height: 95vh;
+    overflow: auto;
 }
 #footer{
     height: 5%;
@@ -105,3 +107,95 @@
     border: 1px black solid;
     background-color: white;
 }
+
+
+/* BOUTON DANS TABLEAU */
+.btnAction{
+    border-radius: 5px;
+}
+
+.btnModifier{
+    background-color: blue;
+}
+ .topInput{
+    display: flex;
+    justify-content: space-around;
+ }
+
+ .bottomInput{
+    width: 300px;
+ }
+ .bottomInput input{
+    width: 350px;
+ }
+ .inputText{
+    margin-right: 20px;
+ }
+ #civilite{
+    width: 200px;
+ }
+ .choixImg{
+    padding-top: 50px;
+ }
+ .rightInput{
+    width: 300px;
+ }
+ .rightInput input{
+    margin-top: 1px;
+    width: 350px
+ }
+ #typeCollaborateur{
+    width: 350px;
+ }
+
+
+.btn_action{
+    display: block;
+    width: 30%;
+    border-radius: 2px;
+} 
+ 
+ .bg_navy{
+    background-color: navy;
+    color: white;
+ }
+
+ #tdMerde{
+    width: 300px;
+    height: 50px;
+    text-align: center;
+ }
+
+ #btnModif{
+    background-color: blue;
+    padding: 3px;
+    margin-right: 5px;
+ }
+ #btnModif a{
+    color: white;
+    text-decoration: none;
+ }
+
+ #btnAff{
+    background-color: green;
+    padding: 3px;
+    margin-right: 5px;
+ }
+ #btnAff a{
+    color: white;
+    text-decoration: none;
+ }
+
+ #btnSupr{
+    background-color: red;
+    padding: 3px;
+    margin-right: 5px;
+ }
+ #btnSupr a{
+    color: white;
+    text-decoration: none;
+ }
+
+ /* #displayModal{
+    display: none;
+ } */

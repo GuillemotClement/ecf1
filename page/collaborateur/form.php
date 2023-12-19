@@ -1,7 +1,7 @@
-<h1 class="titre text-white">SAISIE ARTICLE</h1>
+<!-- <h1 class="titre text-white">SAISIE ARTICLE</h1>
 <a href="" class="text-white modal_close">&times</a>
 <a href="article.php?action=creer" class="btn gb-green">Créer</a>
-<table class="w100 text-white">
+<table class="">
     <tr>
         <td class="w20 text-1_25em">ID</td>
         <td><input type="text" class="form-input w20 text-navy" value="<?=$id?>" disabled></td>
@@ -24,4 +24,4 @@
     <a href="" class="btn bg_blue">Annuler</a>
     <a href="" class="btn bg_red"  <?=$etat?>  >Supprimer</a>
      <input type="submit" class="btn bg_green" <?=$etat?>  value="Valider" >
-</div>
+</div> -->
