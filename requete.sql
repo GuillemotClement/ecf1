@@ -6,6 +6,7 @@ CREATE DATABASE ecf;
 /* CREATION DE LA TABLE */
 CREATE TABLE collaborateur (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    code_collaborateur VARCHAR(10) NOT NULL,
     civilite ENUM('Madame', 'Monsieur') NOT NULL,
     nom VARCHAR(100) NOT NULL,
     prenom VARCHAR(50) NOT NULL,
@@ -26,6 +27,23 @@ CREATE TABLE collaborateur (
     nationalite VARCHAR(255) NOT NULL,
     type_collaborateur ENUM('CDD', 'CDI', 'Independant', 'Stagiaire') NOT NULL
 );
+
+INSERT INTO collaborateur (code_collaborateur, civilite, nom, prenom, date_naissance, ville_naissance, num_secu, mail_pro, mail_perso, portable, tel_fixe, rue, complement, code_postal, ville, departement, region, pays, nationalite, type_collaborateur)
+VALUES 
+('MDJ0000001''Monsieur', 'Dupont', 'Jean', '1980-01-01', 'Paris', '123456789012345', 'jean.dupont@entreprise.com', 'jean.dupont@mail.com', '0600000001', '0100000001', '1 Rue Exemple', 'Appartement 1', '75001', 'Paris', 'Paris', 'Île-de-France', 'France', 'Française', 'CDI'),
+('Madame', 'Martin', 'Marie', '1985-02-02', 'Lyon', '234567890123456', 'marie.martin@entreprise.com', 'marie.martin@mail.com', '0600000002', '0100000002', '2 Rue Exemple', 'Appartement 2', '69001', 'Lyon', 'Rhône', 'Auvergne-Rhône-Alpes', 'France', 'Française', 'CDD'),
+-- Ajoutez ici les 8 autres enregistrements avec des données différentes
+;
+INSERT INTO collaborateur (code_collaborateur, civilite, nom, prenom, date_naissance, ville_naissance, num_secu, mail_pro, mail_perso, portable, tel_fixe, rue, complement, code_postal, ville, departement, region, pays, nationalite, type_collaborateur)
+VALUES
+('HLC0000001', 'Monsieur', 'Lambert', 'Christophe', '1969-06-26', 'Joubert', '050341121598823', 'christophe.lambert@entreprise.com', 'guy07@marie.fr', '+33 (0)6 25 30 27 77', '+33 5 11 71 66 54', 'boulevard Manon Langlois', '4', '75875', 'Guillot-la-Forêt', 'Haute-Corse', 'Wallis-et-Futuna', 'France', 'Française', 'CDD'),
+('FCM0000002', 'Madame', 'Cohen', 'Marine', '1980-03-29', 'Vaillant', '717599644310187', 'marine.cohen@entreprise.com', 'dianethibault@leclercq.fr', '02 33 67 73 86', '+33 (0)1 24 13 35 78', '7, rue de Roux', '612', '15182', 'Guibert', 'Gironde', 'Franche-Comté', 'France', 'Française', 'CDI'),
+('FGR0000003', 'Madame', 'Gillet', 'Rebecca', '1971-08-30', 'Lemaire', '286014674564837', 'rebecca.gillet@entreprise.com', 'chretiendavid@free.fr', '+33 6 33 51 58 40', '+33 8 09 39 55 59', '23, rue de Pons', '580', '25275', 'Barthelemy', 'Jura', 'Aquitaine', 'France', 'Française', 'CDI'),
+('HDJ0000004', 'Monsieur', 'Dupont', 'Jean', '1980-01-01', 'Paris', '123456789012345', 'jean.dupont@entreprise.com', 'jean.dupont@mail.com', '0600000001', '0100000001', '1 Rue Exemple', 'Appartement 1', '75001', 'Paris', 'Paris', 'Île-de-France', 'France', 'Française', 'CDI'),
+('FMA0000005', 'Madame', 'Martin', 'Astrid', '1985-02-02', 'Lyon', '234567890123456', 'astrid.martin@entreprise.com', 'astrid.martin@mail.com', '0600000002', '0100000002', '2 Rue Exemple', 'Appartement 2', '69001', 'Lyon', 'Rhône', 'Auvergne-Rhône-Alpes', 'France', 'Française', 'CDD')
+;
+
+
 
 /* VERSION PRO on sépare les deux tables pour une meilleur maintenance du code */
 CREATE TABLE collaborateur (

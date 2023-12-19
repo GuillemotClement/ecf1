@@ -3,31 +3,36 @@
 // FONCTION CONNEXION
 require_once("./config/parametre.php");
 function connexion($host = HOST, $dbname = DBNAME, $user = USER, $password = PASSWORD){
-    $dns = "mysql:host = $host; dbname = $dbname; charset=utf8";
+    $dns="mysql:host=$host;dbname=$dbname;charset=utf8";
     try{
         $connexion = new PDO($dns, $user, $password);
     }catch(Exception $e){
         echo "<h1>Connexion Impossible ! Vérifier les paramètres !</h1>";
+        echo "Erreur: " . $e->getMessage();
         die;
     }
     return $connexion;
 }
 
 // FONCTION GENERATION DE PAGE
-function generatePages($file, $variables=[], $base = "page/base-bs.html.php"){
+function generatePage($file,$variables=[],$base="page/base-bs.html.php"){ 
     if(file_exists($file)){
         extract($variables);
         ob_start();
         require($file);
-        $content = ob_get_clean();
+        $content=ob_get_clean();
         ob_start();
         require($base);
-        $page = ob_get_clean();
+        $page=ob_get_clean();
         echo $page;
+
     }else{
-        echo "<h1>Désolé le fichier $file n'existe pas</h1>";
+
+        // cas où le fichier $file n'existe pas
+        echo "<h1>Desolé! Le fichier $file n'existe pas!</h1>"; 
         die;
     }
+
 }
 
 // FONCTION RECUPERER ID TABLE

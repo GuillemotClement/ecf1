@@ -2,7 +2,7 @@
 
 const HOST = 'localhost';
 const DBNAME = 'ecf';
-const USER = 'userPhp';
+const USER = 'admin-user';
 const PASSWORD = '123456';
 
 ?>
