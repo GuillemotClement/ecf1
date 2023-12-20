@@ -151,9 +151,9 @@
             
         </div>
         <div class="list_btn my-4 d-flex justify-content-evenly">
-                <button id="btn_cancel" class="btn btn-md btn-primary" onclick="">Annuler</button>
-                <button id="btn_delete"class="btn btn-md btn-danger" onclick="">Supprimer</button>
-                <button id="btn_save" class="btn btn-md btn-success" onclick="enregistrer()">Enregistrer</button>
+                <button id="btn_cancel" class="btn btn-md btn-primary" onclick="alertCancel()">Annuler</button>
+                <button id="btn_delete"class="btn btn-md btn-danger" onclick="alertSupr()">Supprimer</button>
+                <button id="btn_save" class="btn btn-md btn-success" onclick="alertSave()">Enregistrer</button>
             </div> 
     </div>
 </div>
@@ -167,6 +167,15 @@
 
 
 <script> 
+    function alertCancel(){
+        confirm('Vous souhaitez annuler');
+    }
+    function alertSupr(){
+        confirm('Vous souhaitez supprimer');
+    }
+    function alertSave(){
+        confirm('Vous souhaitez enregistrer');
+    }
 
     function createNewCollaborateur(){
         code_collaborateur.value = "";
