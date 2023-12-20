@@ -16,7 +16,7 @@
                 }else{
                     $sql = "UDAPTE collaborateur SET code_collaborateur=?,civilite=?,nom=?,prenom=?,date_naissance=?,ville_naissance=?,num_secu=?,mail_pro=?,mail_perso=?,portable=?,tel_fixe=?,rue=?,complement=?,code_postal=?,ville=?,departement=?,region=?,pays=?,nationalite=?,type_collaborateur=? WHERE id=?";
                     $requete = $connexion->prepare($sql);
-                    $requete -> execute([$numArticle, $designation, $prixUnitaire, $id]);
+                    $requete -> execute([$code_collaborateur, $civilite, $nom, $prenom, $date_naissance, $ville_naissance, $num_secu, $mail_pro, $mail_perso,$portable, $tel_fixe, $rue, $complement, $code_postal, $ville, $departement, $region, $pays, $nationalite, $type_collaborateur]);
                 }
                 echo "Vous avez bien enregistrer les donnees";
                 break;
@@ -29,17 +29,27 @@
                 'civilite'=>$collaborateur['civilite'],
                 'nom'=>$collaborateur['nom'],
                 'prenom'=>$collaborateur['prenom'],
-                'prenom'=>$collaborateur['prenom'],
-                'prenom'=>$collaborateur['prenom'],
-                'prenom'=>$collaborateur['prenom'],
-                'prenom'=>$collaborateur['prenom'],
-                'prenom'=>$collaborateur['prenom'],
-                'prenom'=>$collaborateur['prenom'],
-                'prenom'=>$collaborateur['prenom'],
+                'date_naissance'=>$collaborateur['date_naissance'],
+                'ville_naissance'=>$collaborateur['ville_naissance'],
+                'num_secu'=>$collaborateur['num_secu'],
+                'mail_pro'=>$collaborateur['mail_pro'],
+                'mail_perso'=>$collaborateur['mail_perso'],
+                'portable'=>$collaborateur['portable'],
+                'tel_fixe'=>$collaborateur['tel_fixe'],
+                'rue'=>$collaborateur['rue'],
+                'complement'=>$collaborateur['complement'],
+                'code_postal'=>$collaborateur['code_postal'],
+                'ville'=>$collaborateur['ville'],
+                'departement'=>$collaborateur['departement'],
+                'region'=>$collaborateur['region'],
+                'pays'=>$collaborateur['pays'],
+                'nationalite'=>$collaborateur['nationalite'],
+                'type_collaborateur'=>$collaborateur['type_collaborateur'],
                 'etat'=>'disabled',              
             ];
+            $sousPageHtml="page/collaborateur/listCollaborateur.php";
             generatePage($sousPageHtml,$variables);
-         break;
+            break;
         case "search":
             $mot = $_POST['mot'];
             $connexion=connexion();
